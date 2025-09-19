@@ -16,7 +16,8 @@ This initial version is a functional Flask web application that demonstrates the
 
 ## Table of Contents
 
-- [Current Features](#current-features)
+- [Screenshots & Examples](#screenshots--examples)
+- [Compatibility Note](#compatibility-note)
 - [How It Works](#how-it-works)
 - [Getting Started: How to Test the App](#getting-started-how-to-test-the-app)
   - [1. Prerequisites](#1-prerequisites)
@@ -27,12 +28,48 @@ This initial version is a functional Flask web application that demonstrates the
 
 ---
 
-## Current Features
+## Screenshots & Examples
 
-*   **Web-Based Upload:** A simple web interface to upload `.pptx` presentation files.
-*   **Automatic Conversion:** Uses a background process to automatically convert uploaded presentations into a series of PNG images, creating a "course."
-*   **Course Listing:** A page that dynamically lists all available courses.
-*   **Web-Based Viewer:** A simple slide viewer with "Next" and "Previous" navigation to go through the course content in any web browser.
+Below are some screenshots of the application in action, including examples of security awareness posters used for testing.
+
+<p align="center">
+  <b>Application Interface</b><br>
+  <img width="520" height="230" alt="image" src="https://github.com/user-attachments/assets/192215f8-8fc6-4451-bb68-418a30ed3c08" />  
+
+  <img width="845" alt="Application Screenshot" src="https://github.com/user-attachments/assets/6ce1fab2-2bd3-46cb-a367-49dab46c1f3d">
+</p>
+
+<br>
+
+<p align="center">
+  <b>Example Security Awareness Posters</b><br>
+  <i>(Posters below are originally from the <a href="https://www.cdse.edu/Training/Security-Posters/">Center for Development of Security Excellence (CDSE)</a> and are used here for demonstration purposes. This app does not have or use these amazing posters)</i>
+</p>
+
+<!-- Responsive Image Grid using an HTML table -->
+<table>
+  <tr>
+    <td align="center"><img width="400" src="https://github.com/user-attachments/assets/a8dd0610-4f03-4e19-b176-c29ab56bd341" alt="Poster 1"></td>
+    <td align="center"><img width="400" src="https://github.com/user-attachments/assets/770d7303-9553-45dc-9e93-a0dcb57125ad" alt="Poster 2"></td>
+  </tr>
+  <tr>
+    <td align="center"><img width="400" src="https://github.com/user-attachments/assets/377fc86b-ae24-43bd-a70a-ed3399e71e0c" alt="Poster 3"></td>
+    <td align="center"><img width="400" src="https://github.com/user-attachments/assets/be1bb8c9-ba06-4d50-953b-64d67dd2213e" alt="Poster 4"></td>
+  </tr>
+</table>
+
+## Compatibility Note
+
+The current course viewer is designed with a fixed **16:9 landscape aspect ratio**, which is standard for most presentations.
+
+*   ✅ **Landscape Slides:** Slides designed in a landscape format will fill the viewer perfectly.
+*   ⚠️ **Portrait Slides:** Slides or images in a portrait (vertical) format will be displayed with black bars on the sides to fit within the landscape viewer, as shown below.
+
+<p align="center">
+  <img width="600"  alt="Portrait slide in landscape viewer" src="https://github.com/user-attachments/assets/6fa86262-2c57-4cdd-92e5-bd2e2af3d6ff">
+</p>
+
+Improving the display of portrait-oriented content is a planned feature on my roadmap.
 
 ## How It Works
 
@@ -61,8 +98,8 @@ You must have the following software installed on your system:
 **Step A: Clone the Repository**
 Open your terminal or command prompt and clone the project from GitHub:
 ```bash
-git clone <your-repository-url>
-cd security_awareness_app
+git clone https://github.com/ThiagoMaria-SecurityIT/Security-Awareness-APP.git
+cd Security-Awareness-APP
 ```
 
 **Step B: Install Python Dependencies**
@@ -97,9 +134,9 @@ You can now upload a `.pptx` file, see it appear in the "Available Courses" list
 
 ## AI Transparency
 
-- This project was developed and is currently under active iteration using **Manus AI** as a development partner.   
-- The AI-generated code, architecture, and documentation have been reviewed, tested, and guided by a human developer.   
-- Developer [Thiago Maria Security IT](https://github.com/ThiagoMaria-SecurityIT).
+- This project was developed and is currently under active iteration using **Manus AI** as a development partner.
+- The AI-generated code, architecture, and documentation have been reviewed, tested, and **guided** by a human developer.     
+- Developer [Thiago Maria | Security IT](https://github.com/ThiagoMaria-SecurityIT).
 
 ## Future Roadmap (Expected Realization: December 2025)
 
@@ -114,4 +151,5 @@ This proof-of-concept is the beginning of a much larger project. The goal is to 
 *   **Certificate of Completion:** Automatically generate a certificate when a user completes a course.
 *   **Course Management:** Features for trainers to delete or update courses.
 *   **Enhanced User Interface:** A complete redesign of the UI for a professional and intuitive user experience.
+*   **Improved Aspect Ratio Handling:** Intelligently adjust the viewer to better display portrait-oriented slides and content.
 
