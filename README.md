@@ -93,23 +93,39 @@ You must have the following software installed on your system:
 *   **LibreOffice:** This is essential for the file conversion. You can download it from the [official website](https://www.libreoffice.org/download/download-libreoffice/).
 *   **Git** (to clone the repository).
 
-### 2. Setup and Installation
+### 2. Setup and Installation  
 
-**Step A: Clone the Repository**
-Open your terminal or command prompt and clone the project from GitHub:
+- **Step A: Clone the Repository**  
+Open your terminal or command prompt and clone the project from GitHub:  
 ```bash
 git clone https://github.com/ThiagoMaria-SecurityIT/Security-Awareness-APP.git
 cd Security-Awareness-APP
 ```
 
-**Step B: Install Python Dependencies**
-Install the required Python libraries using `pip`:
+- **Step B: Install Python Dependencies**  
+Install the required Python libraries using `pip` (recommended within a virtual environment):  
+
+ Create a virtual environment  
+ ```bash
+python -m venv venv
+```
+ Activate the virtual environment  
+ On macOS/Linux:
+```
+source venv/bin/activate
+```
+ On Windows:
+ ```bash
+venv\Scripts\activate
+```
+ Install the required packages
+
 ```bash
 pip install Flask PyMuPDF
 ```
 
-**Step C: Configure the LibreOffice Path**
-This is the most critical step. The application needs to know the exact location of the LibreOffice executable.
+- **Step C: Configure the LibreOffice Path**  
+This is the most critical step. The application needs to know the exact location of the LibreOffice executable.  
 
 1.  Open the `app.py` file in a text editor.
 2.  Find the line that says `LIBREOFFICE_PATH`.
