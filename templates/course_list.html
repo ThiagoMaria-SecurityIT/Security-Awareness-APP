@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Courses</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        .container { max-width: 800px; margin: auto; }
+        h1, h2 { text-align: center; }
+        ul { list-style: none; padding: 0; }
+        li { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
+        a { text-decoration: none; color: #007bff; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+        .no-courses { text-align: center; color: #6c757d; }
+        .nav-link { display: block; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Security Awareness Training</h1>
+        <h2>Available Courses</h2>
+
+        <!-- Check if the courses list is empty -->
+        {% if courses %}
+            <ul>
+                <!-- Loop through each course passed from the Flask app -->
+                {% for course in courses %}
+                    <li>
+                        <!-- Each course name will be a link to its viewer page (which we'll create next) -->
+                        <a href="{{ url_for('view_course', course_name=course) }}">{{ course }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-courses">No courses have been created yet. Please upload a presentation.</p>
+        {% endif %}
+
+        <a href="{{ url_for('upload_page') }}" class="nav-link">Upload a New Presentation</a>
+    </div>
+
+</body>
+</html>

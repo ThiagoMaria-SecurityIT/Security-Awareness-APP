@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course: {{ course_name }}</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f9; }
+        .viewer-container {
+            max-width: 900px;
+            margin: auto;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        h1 { text-align: center; color: #333; }
+        .slide-window {
+            position: relative;
+            width: 100%;
+            /* Maintain a 16:9 aspect ratio for the slide container */
+            padding-top: 56.25%; 
+            background-color: #000;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #slide-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ensures the whole slide is visible */
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .nav-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #007bff;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        .nav-button:disabled {
+            background-color: #ccc;
+            border-color: #ccc;
+            cursor: not-allowed;
+        }
+        #slide-counter {
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+            text-align: center; /* Center the text */
+        }
+        .nav-links { text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="viewer-container">
+        <h1>{{ course_name }}</h1>
+
+        <div class="slide-window">
+            <!-- The image will be displayed here -->
+            <img id="slide-image" src="" alt="Course slide">
+        </div>
+
+        <div class="navigation">
+            <button id="prev-button" class="nav-button" onclick="changeSlide(-1)">Previous</button>
+            <span id="slide-counter"></span>
+            <button id="next-button" class="nav-button" onclick="changeSlide(1)">Next</button>
+        </div>
+    </div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('list_courses') }}">Back to Course List</a>
+    </div>
+
+    <script>
+        // --- JavaScript for Slide Navigation ---
+
+        // Flask passes the list of slide URLs to this template.
+        // We convert it into a JavaScript array.
+        const slides = {{ slide_urls | tojson }};
+        
+        let currentSlideIndex = 0;
+
+        const slideImage = document.getElementById('slide-image');
+        const slideCounter = document.getElementById('slide-counter');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+
+        function updateSlide() {
+            // Set the image source to the current slide's URL
+            slideImage.src = slides[currentSlideIndex];
+            
+            // Update the counter text (e.g., "Slide 1 / 15")
+            slideCounter.textContent = `Slide ${currentSlideIndex + 1} / ${slides.length}`;
+            
+            // Enable/disable navigation buttons
+            prevButton.disabled = (currentSlideIndex === 0);
+            nextButton.disabled = (currentSlideIndex === slides.length - 1);
+        }
+
+        function changeSlide(direction) {
+            // Update the index, ensuring it stays within the array bounds
+            const newIndex = currentSlideIndex + direction;
+            if (newIndex >= 0 && newIndex < slides.length) {
+                currentSlideIndex = newIndex;
+                updateSlide();
+            }
+        }
+
+        // Initialize the viewer when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if the 'slides' array passed from Flask has any images.
+            if (slides.length > 0) {
+                // If slides exist, initialize the viewer normally.
+                updateSlide();
+            } else {
+                // If no slides are found, it's likely because the conversion is still running.
+                // Display a helpful message to the user.
+                slideImage.style.display = 'none'; // Hide the broken image icon
+                slideCounter.innerHTML = `
+                    <p style="color: #555; font-weight: normal;">
+                        The course is still being prepared. Please wait a moment.  
+
+                        <a href="#" onclick="window.location.reload(); return false;">Click here to refresh</a> or go back and try again.
+                    </p>
+                `;
+                prevButton.disabled = true;
+                nextButton.disabled = true;
+            }
+        });
+    </script>
+
+</body>
+</html>

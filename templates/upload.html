@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload a Presentation</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; text-align: center; }
+        .container { max-width: 500px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+        .messages { list-style: none; padding: 0; }
+        .messages li { background-color: #d4edda; color: #155724; padding: 10px; margin-bottom: 10px; border-radius: 4px; }
+        input[type="submit"] { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
+        .nav-link { display: block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload a PowerPoint Presentation</h2>
+        <p>Please select a .pptx file to create a new course.</p>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
+
+        <!-- NEW LINK -->
+        {% if courses_exist %}
+            <a href="{{ url_for('list_courses') }}" class="nav-link">View Available Courses</a>
+        {% endif %}
+    </div>
+</body>
+</html>
