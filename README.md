@@ -8,6 +8,12 @@
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License: MIT">
 </p>
 
+> [!Important]
+> This app is now being developed as a full web application.  
+> You can find the new and improved version here:  **[Security-Awareness-Web-Platform](https://github.com/ThiagoMaria-SecurityIT/Security-Awareness-Web-Platform )**  
+
+---
+
 This project is the foundational proof-of-concept for a web-based platform designed to turn PowerPoint (`.pptx`) presentations into simple, web-accessible security awareness courses for enterprise use.
 
 This initial version is a functional Flask web application that demonstrates the core conversion pipeline. It is currently under active development and is **not ready for a production environment.**
@@ -154,7 +160,10 @@ You can now upload a `.pptx` file, see it appear in the "Available Courses" list
 - The AI-generated code, architecture, and documentation have been reviewed, tested, and **guided** by a human developer.     
 - Developer [Thiago Maria | Security IT](https://github.com/ThiagoMaria-SecurityIT).
 
-## Future Roadmap (Expected Realization: December 2025)
+## Future Roadmap (Expected Realization: December 2025)  
+> [!Important]
+> This app is now being developed as a full web application.  
+> You can find the new and improved version here:  **[Security-Awareness-Web-Platform](https://github.com/ThiagoMaria-SecurityIT/Security-Awareness-Web-Platform )**   
 
 This proof-of-concept is the beginning of a much larger project. The goal is to build a complete, multi-user enterprise training platform. Key features planned for future development include:
 
